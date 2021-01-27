@@ -1,0 +1,18 @@
+Options +Indexes
+Options +FollowSymLinks
+
+RewriteEngine On
+
+#RewriteBase /pacmec/api
+RewriteRule ^index\.php$ - [L]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule . /pacmec/includes/index.php [L,QSA]
+RewriteRule ^api(.*)$ /pacmec/includes/index.php$1 [L,QSA]
+
+RewriteBase /pacmec
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule . /pacmec/index.php [L]
+RewriteRule . /pacmec/index.php [L,QSA]

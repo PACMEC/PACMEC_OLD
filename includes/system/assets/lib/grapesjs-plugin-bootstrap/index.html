@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>GrapesJS Plugin Boilerplate</title>
+    <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/grapesjs"></script>
+    <script src="dist/grapesjs-plugin-bootstrap.min.js"></script>
+    <script src="https://unpkg.com/grapesjs-tui-image-editor"></script>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="gjs" style="height:0px; overflow:hidden">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light bg-transparent" id="gtco-main-nav">
+			<div class="container"><a class="navbar-brand">Solution</a>
+				<button class="navbar-toggler" data-target="#my-nav" onclick="myFunction(this)" data-toggle="collapse"><span
+						class="bar1"></span> <span class="bar2"></span> <span class="bar3"></span></button>
+				<div id="my-nav" class="collapse navbar-collapse">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+						<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+						<li class="nav-item"><a class="nav-link" href="#news">News</a></li>
+						<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+					</ul>
+					<form class="form-inline my-2 my-lg-0">
+						<a href="#" class="btn btn-outline-dark my-2 my-sm-0 mr-3 text-uppercase">login</a> <a href="#"
+																											   class="btn btn-info my-2 my-sm-0 text-uppercase">sign
+						up</a>
+					</form>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="container-fluid gtco-banner-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<h1> We promise to bring
+							the best <span>solution</span> for
+							your business. </h1>
+						<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In rhoncus turpis nisl. </p>
+						<a href="#">Contact Us <i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+					<div class="col-md-6">
+						<div class="card"><img class="card-img-top img-fluid" src="images/banner-img.png" alt=""></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid gtco-feature" id="services">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+						<div class="cover">
+							<div class="card">
+									<image clip-path="url(#clip-path)" xlink:href="images/learn-img.jpg" width="100%"
+										   height="465" class="svg__image"></image>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<h2> We are a Creative Digital
+							Agency & Marketing Experts </h2>
+						<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In rhoncus turpis nisl, vitae dictum mi
+							semper convallis. Ut sapien leo, varius ac dapibus a, cursus quis ante. </p>
+						<p>
+							<small>Nunc sodales lobortis arcu, sit amet venenatis erat placerat a. Donec lacinia magna nulla,
+								cursus impediet augue egestas id. Suspendisse dolor lectus, pellentesque quis tincidunt ac,
+								dictum id neque.
+							</small>
+						</p>
+						<a href="#">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid gtco-features" id="about">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4">
+						<h2> Explore The Services<br/>
+							We Offer For You </h2>
+						<p> Nunc sodales lobortis arcu, sit amet venenatis erat placerat a. Donec lacinia magna nulla, cursus
+							impediet augue egestas id. Suspendisse dolor lectus, pellentesque quis tincidunt ac, dictum id
+							neque. </p>
+						<a href="#">All Services <i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+					<div class="col-lg-8">
+						<div class="row">
+							<div class="col">
+								<div class="card text-center">
+									<div class="oval"><img class="card-img-top" src="images/web-design.png" alt=""></div>
+									<div class="card-body">
+										<h3 class="card-title">Web Design</h3>
+										<p class="card-text">Nullam quis libero in lorem accumsan sodales. Nam vel nisi
+											eget.</p>
+									</div>
+								</div>
+								<div class="card text-center">
+									<div class="oval"><img class="card-img-top" src="images/marketing.png" alt=""></div>
+									<div class="card-body">
+										<h3 class="card-title">Marketing</h3>
+										<p class="card-text">Nullam quis libero in lorem accumsan sodales. Nam vel nisi
+											eget.</p>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="card text-center">
+									<div class="oval"><img class="card-img-top" src="images/seo.png" alt=""></div>
+									<div class="card-body">
+										<h3 class="card-title">SEO</h3>
+										<p class="card-text">Nullam quis libero in lorem accumsan sodales. Nam vel nisi
+											eget.</p>
+									</div>
+								</div>
+								<div class="card text-center">
+									<div class="oval"><img class="card-img-top" src="images/graphics-design.png" alt=""></div>
+									<div class="card-body">
+										<h3 class="card-title">Graphics Design</h3>
+										<p class="card-text">Nullam quis libero in lorem accumsan sodales. Nam vel nisi
+											eget.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid gtco-numbers-block">
+			<div class="container"><image  clip-path="url(#ctm)" xlink:href="images/word-map.png" height="800px" width="100%" class="svg__image"></image>
+				<div class="row">
+					<div class="col-3">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">125</h5>
+								<p class="card-text">Active Projects</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">200</h5>
+								<p class="card-text">Business Growth</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">530</h5>
+								<p class="card-text">Completed Projects</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">941</h5>
+								<p class="card-text">Happy Clients</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid gtco-testimonials">
+			<div class="container">
+				<h2>What our customers say about us.</h2>
+				<div class="owl-carousel owl-carousel1 owl-theme">
+					<div>
+						<div class="card text-center"><img class="card-img-top" src="images/customer1.jpg" alt="">
+							<div class="card-body">
+								<h5>Lisa Gally <br/>
+									<span> Project Manager </span></h5>
+								<p class="card-text">“ Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+									impedit quo minus id quod maxime placeat ” </p>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div class="card text-center"><img class="card-img-top" src="images/customer2.jpg" alt="">
+							<div class="card-body">
+								<h5>Missy Limana<br/>
+									<span> Project Manager </span></h5>
+								<p class="card-text">“ Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+									impedit quo minus id quod maxime placeat ” </p>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div class="card text-center"><img class="card-img-top" src="images/customer3.jpg" alt="">
+							<div class="card-body">
+								<h5>Aana Brown<br/>
+									<span> Project Manager </span></h5>
+								<p class="card-text">“ Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+									impedit quo minus id quod maxime placeat ” </p>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div class="card text-center"><img class="card-img-top" src="images/customer3.jpg" alt="">
+							<div class="card-body">
+								<h5>Aana Brown<br/>
+									<span> Project Manager </span></h5>
+								<p class="card-text">“ Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+									impedit quo minus id quod maxime placeat ” </p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+
+
+    <script type="text/javascript">
+		var editor = grapesjs.init({
+			height: '100%',
+			showOffsets: 1,
+			noticeOnUnload: 0,
+			storageManager: { autoload: 0 },
+			container: '#gjs',
+			fromElement: true,
+
+			canvas: {
+			  scripts: [
+				// 'https://code.jquery.com/jquery-3.2.1.min.js',
+				// 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
+				'js/jquery-3.3.1.slim.min.js',
+				'js/popper.min.js',
+				'js/bootstrap.min.js',
+				'owl-carousel/owl.carousel.min.js',
+				'js/main.js'
+			  ],
+			  styles: [
+				// 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
+				'css/font-awesome.css',
+				'owl-carousel/assets/owl.carousel.min.css',
+				'css/bootstrap.min.css',
+				'css/style.css',
+			  ]
+			},
+
+			plugins: [
+				'grapesjs-plugin-bootstrap',
+				'grapesjs-tui-image-editor'
+			],
+			pluginsOpts: {
+				'grapesjs-plugin-bootstrap': {
+					addBasicStyle: true
+				},
+				'grapesjs-tui-image-editor': {
+					config: {
+						includeUI: {
+							initMenu: 'filter',
+						},
+					},
+					icons: {
+					},
+				}
+			}
+		});
+		window.editor = editor;
+		</script>
+		
+		<!-- 
+		<title>Solution - Free Responsive Agency Template using Bootstrap 4</title>
+		-->
+	</body>
+</html>
