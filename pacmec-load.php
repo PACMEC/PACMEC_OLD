@@ -17,6 +17,12 @@ pacmec_init_vars();
 pacmec_init_session();
 pacmec_init_options();
 
+
+if(siteinfo('enable_ssl') == 1 && $_SERVER["HTTPS"] != "on"){
+    header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+    exit();
+}
+
 if(!isset($GLOBALS['PACMEC']['theme']['path'])){
 	echo "Hubo un error cargando el tema principal, consulte la documentacion o contacte con soporte.";
 	exit();
