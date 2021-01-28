@@ -1,4 +1,4 @@
-content/plugins/*/
-content/themes/*/
-content/uploads/*
+content/plugins/**/*
+content/themes/*/*
+content/uploads/*/*
 includes/config/settings.php
