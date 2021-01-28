@@ -11616,13 +11616,19 @@ namespace FelipheGomez\PhpRestAPI {
 		'password'                  => DB_pass,
 		#'port' => DB_port,
 		'controllers' => 'records,columns,openapi,geojson', //cache
-		'middlewares' => 'cors,dbAuth,authorization,sanitation,validation,multiTenancy,customization,pageLimits', //    joinLimits ,xsrf,jwtAuth
+		'middlewares' => 'cors,dbAuth,authorization,sanitation,validation,multiTenancy,customization,pageLimits', //    joinLimits ,xsrf
 		'cors.allowedOrigins' => '*',
 		#'cors.allowCredentials' => 'cors.allowedOrigins',
-		// 'jwtAuth.mode' => 'optional',
-		//'jwtAuth.time' => '1538207605',
-		//'jwtAuth.secret' => 'axpIrCGNGqxzx2R9dtXLIPUSqPo778uhb8CA0F4Hx',
-		//'basicAuth.mode' => 'optional',
+		//'jwtAuth.mode' => 'optional',
+		// 'basicAuth.header' => '',
+		// 'basicAuth.leeway' => '5',
+		// 'jwtAuth.ttl' => '30',
+		//'jwtAuth.secrets' => 'axpIrCGNGqxzx2R9dtXLIPUSqPo778uhb8CA0F4Hx',
+		// 'jwtAuth.algorithms' => '',
+		// 'jwtAuth.audiences' => '',
+		// 'jwtAuth.issuers' => '',
+		// 'jwtAuth.sessionName' => '',
+		
 		//'basicAuth.passwordFile' => __DIR__ . DIRECTORY_SEPARATOR . '.htpasswd',
 		'debug' => true,
 		'openApiBase' => '{"info":{"title":"API Rest PACMEC","version":"1.0.0"}}',
@@ -11636,6 +11642,11 @@ namespace FelipheGomez\PhpRestAPI {
 		'dbAuth.passwordLength' => '8',
 		'pageLimits.pages' => 10,
 		'pageLimits.records' => 25,
+		
+		
+		'authorization.tableHandler' => function ($operation, $tableName) {
+			return $tableName != 'users';
+		},
 		/*
 		'sanitation.handler' => function ($operation, $tableName, $column, $value) {
 			exit("{$operation}");

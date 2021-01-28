@@ -407,21 +407,7 @@ function language_attributes(){
 }
 
 function pacmec_head(){
-	foreach($GLOBALS['PACMEC']['website']['styles']['head'] as $file){
-		echo "<link href=\"{$file['src']}\" rel=\"{$file['rel']}\" type=\"{$file['type']}\">";
-	}
-	do_action( "head" );
-	foreach($GLOBALS['PACMEC']['website']['scripts']['head'] as $file){
-		echo "<script src=\"{$file['src']}\" rel=\"{$file['rel']}\" type=\"{$file['type']}\"></script>";
-	}
-	
-	if(isAdmin()){
-		echo "<script>\n";
-			echo "const route = ".json_encode($GLOBALS['PACMEC']['route'], JSON_PRETTY_PRINT)."; \n";
-			echo "const styles_list = ".json_encode($GLOBALS['PACMEC']['website']['styles']['list'], JSON_PRETTY_PRINT)."; \n";
-			echo "const scripts_list = ".json_encode($GLOBALS['PACMEC']['website']['scripts']['list'], JSON_PRETTY_PRINT)."; \n";
-		echo "</script>\n";
-	}
+	include_once PACMEC_PATH."includes/system/head.php";
 	return true;
 }
 

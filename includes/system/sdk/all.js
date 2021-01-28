@@ -19,7 +19,8 @@ function callB(a=null){ console.log(a); return a; }
 class PACMEC {
 	constructor() {
 		if(!window.pacmec){ throw new Error(4200001, "window.pacmec.options no encontrado", "PACMEC.options"); }
-		if(!window.pacmec.options.siteurl){ throw new Error(4200002, "window.pacmec.options.siteurl no encontrado", "PACMEC.options.siteurl"); }
+		// if(!window.pacmec.options.siteurl){ throw new Error(4200002, "window.pacmec.options.siteurl no encontrado", "PACMEC.options.siteurl"); }
+		if(!window.pacmec.options.siteurl){ window.pacmec.options.siteurl = ''; }
 		
 		this.global = {
 			version: "0.0.1",
