@@ -4597,7 +4597,8 @@ namespace FelipheGomez\PhpRestAPI\Controller {
 
         public function _list(ServerRequestInterface $request): ResponseInterface
         {
-            $table = DB_prefix . RequestUtils::getPathSegment($request, 2);
+            // $table = DB_prefix . RequestUtils::getPathSegment($request, 2);
+            $table = RequestUtils::getPathSegment($request, 2);
             $params = RequestUtils::getParams($request);
             if (!$this->service->hasTable($table)) {
                 return $this->responder->error(ErrorCode::TABLE_NOT_FOUND, $table);
@@ -4607,7 +4608,8 @@ namespace FelipheGomez\PhpRestAPI\Controller {
 
         public function read(ServerRequestInterface $request): ResponseInterface
         {
-            $table = DB_prefix . RequestUtils::getPathSegment($request, 2);
+            // $table = DB_prefix . RequestUtils::getPathSegment($request, 2);
+            $table = RequestUtils::getPathSegment($request, 2);
             if (!$this->service->hasTable($table)) {
                 return $this->responder->error(ErrorCode::TABLE_NOT_FOUND, $table);
             }
@@ -4631,7 +4633,8 @@ namespace FelipheGomez\PhpRestAPI\Controller {
 
         public function create(ServerRequestInterface $request): ResponseInterface
         {
-            $table = DB_prefix . RequestUtils::getPathSegment($request, 2);
+            // $table = DB_prefix . RequestUtils::getPathSegment($request, 2);
+            $table = RequestUtils::getPathSegment($request, 2);
             if (!$this->service->hasTable($table)) {
                 return $this->responder->error(ErrorCode::TABLE_NOT_FOUND, $table);
             }
@@ -4656,7 +4659,8 @@ namespace FelipheGomez\PhpRestAPI\Controller {
 
         public function update(ServerRequestInterface $request): ResponseInterface
         {
-            $table = DB_prefix . RequestUtils::getPathSegment($request, 2);
+            // $table = DB_prefix . RequestUtils::getPathSegment($request, 2);
+            $table = RequestUtils::getPathSegment($request, 2);
             if (!$this->service->hasTable($table)) {
                 return $this->responder->error(ErrorCode::TABLE_NOT_FOUND, $table);
             }
@@ -4689,7 +4693,8 @@ namespace FelipheGomez\PhpRestAPI\Controller {
 
         public function delete(ServerRequestInterface $request): ResponseInterface
         {
-            $table = DB_prefix . RequestUtils::getPathSegment($request, 2);
+            // $table = DB_prefix . RequestUtils::getPathSegment($request, 2);
+            $table = RequestUtils::getPathSegment($request, 2);
             if (!$this->service->hasTable($table)) {
                 return $this->responder->error(ErrorCode::TABLE_NOT_FOUND, $table);
             }
@@ -4712,7 +4717,8 @@ namespace FelipheGomez\PhpRestAPI\Controller {
 
         public function increment(ServerRequestInterface $request): ResponseInterface
         {
-            $table = DB_prefix . RequestUtils::getPathSegment($request, 2);
+            // $table = DB_prefix . RequestUtils::getPathSegment($request, 2);
+            $table = RequestUtils::getPathSegment($request, 2);
             if (!$this->service->hasTable($table)) {
                 return $this->responder->error(ErrorCode::TABLE_NOT_FOUND, $table);
             }
@@ -11616,7 +11622,7 @@ namespace FelipheGomez\PhpRestAPI {
 		'password'                  => DB_pass,
 		#'port' => DB_port,
 		'controllers' => 'records,columns,openapi,geojson', //cache
-		'middlewares' => 'cors,dbAuth,authorization,sanitation,validation,multiTenancy,customization,pageLimits', //    joinLimits ,xsrf
+		'middlewares' => 'cors,dbAuth,authorization,sanitation,validation,multiTenancy,customization,pageLimits,xml', //    joinLimits ,xsrf
 		'cors.allowedOrigins' => '*',
 		#'cors.allowCredentials' => 'cors.allowedOrigins',
 		//'jwtAuth.mode' => 'optional',
@@ -11643,19 +11649,29 @@ namespace FelipheGomez\PhpRestAPI {
 		'pageLimits.pages' => 10,
 		'pageLimits.records' => 25,
 		
-		
-		'authorization.tableHandler' => function ($operation, $tableName) {
-			return $tableName != 'users';
+		'authorization.recordHandler' => function ($operation, $tableName) {
+			return ($tableName == DB_prefix.'users') ? 'filter=username,eq,'.$_SESSION['user']['username'] : '';
 		},
+		'validation.handler' => function ($operation, $tableName, $column, $value, $context) {
+			if($column['name'] == 'created_by' && $value == null) $value = $_SESSION['user']['id'];
+			if($column['name'] == 'modified_by' && $value == null) $value = $_SESSION['user']['id'];
+			
+			return ($column['name'] == 'user' && $value !== $_SESSION['user']['id']) ? 'No puedes crear contenido para otros usuarios' : true;
+		},
+		'multiTenancy.handler' => function ($operation, $tableName) {
+			return [
+				'user' => $_SESSION['user']['id'],
+				// 'created_by' => $_SESSION['user']['id'],
+				// 'modified_by' => $_SESSION['user']['id'],
+			];
+},
 		/*
+		'authorization.tableHandler' => function ($operation, $tableName) {
+			return ($tableName == DB_prefix.'users') ? 'filter=status,eq,1' : '';
+		},
 		'sanitation.handler' => function ($operation, $tableName, $column, $value) {
 			exit("{$operation}");
 			return is_string($value) ? strip_tags($value) : $value;
-		},
-		'authorization.recordHandler' => function ($operation, $tableName) {
-			exit("{$operation}");
-			#exit();
-			return ($operation == DB_prefix.'users') ? 'filter=status,eq,1' : '';
 		},
 		'authorization.tableHandler' => function ($operation, $tableName) {
 			exit("{$operation}");

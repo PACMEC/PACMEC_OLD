@@ -156,6 +156,7 @@ function pacmec_load_plugins($path){
 		} else {
 			$type = pacmec_validate_file($file->link);
 			if($type == "plugin"){
+				$plugins_activated = siteinfo("plugins_activated");
 				$info = pacmec_extract_info($file->link);
 				if(isset($info['plugin_name'])){
 					$info['active'] = false;
@@ -173,7 +174,7 @@ function pacmec_load_theme($path){
 	$folder_JSON = php_file_tree_dir_JSON_exts($path, true, [], true, 0, 0);
 	foreach($folder_JSON as $file){
 		if(is_dir($file->link)){
-			$r = array_merge($r, pacmec_load_theme($file->link));
+			//$r = array_merge($r, pacmec_load_theme($file->link));
 		} else {
 			$type = pacmec_validate_file($file->link);
 			if($type == "theme"){
