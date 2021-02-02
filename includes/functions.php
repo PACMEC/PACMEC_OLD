@@ -706,8 +706,9 @@ function validate_permission($permission_label){
 	if(!isset(userinfo('user')->id) || userinfo('user')->id == "" || userinfo('user')->id <= 0){ return false; }
 	$permissions = userinfo('permissions_items');
 	// $permissions = userinfo('permissions');
-	if(isset($permissions[$permission_label])){ return true; }	
-	return false;
+	$result = isset($permissions[$permission_label]) ||  isset($permissions['super_user']) ? true : false;
+	return $result;
+	
 }
 
 function add_permission(string $tag, $obj=null):bool{
@@ -769,7 +770,6 @@ function pacmec_init_options(){
 	foreach(Menus::allLoad() as $menu){ $GLOBALS['PACMEC']['menus'][$menu->slug] = $menu; }
 
 	$GLOBALS['PACMEC']['plugins'] = pacmec_load_plugins(PACMEC_PATH."content/plugins");
-	$GLOBALS['PACMEC']['theme'] = pacmec_load_theme(PACMEC_PATH."content/themes/{$GLOBALS['PACMEC']['options']['theme']}");
 	
 	$GLOBALS['PACMEC']['routes']['/errors'] = (object) [
 		'is_actived'=>1,
@@ -800,6 +800,8 @@ function pacmec_init_route(){
 		$GLOBALS['PACMEC']['routes']['/errors']->content = "\t\tRoute no encontrado: {$reqUrl}\n";
 		$GLOBALS['PACMEC']['route'] = $GLOBALS['PACMEC']['routes']['/errors'];
 	}
+	
+	set_route($reqUrl);
 }
 
 function pacmec_init_plugins_actives(){

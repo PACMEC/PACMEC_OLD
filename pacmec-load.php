@@ -17,23 +17,26 @@ pacmec_init_vars();
 pacmec_init_session();
 pacmec_init_options();
 
-
 if(siteinfo('enable_ssl') == 1 && $_SERVER["HTTPS"] != "on"){
     header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
     exit();
 }
 
+pacmec_init_route();
+pacmec_init_plugins_actives();
+
+if(!empty($GLOBALS['PACMEC']['route']->layout)){
+	$GLOBALS['PACMEC']['theme'] = pacmec_load_theme(PACMEC_PATH."content/themes/{$GLOBALS['PACMEC']['options']['theme']}/layouts/{$GLOBALS['PACMEC']['route']->layout}");
+	// exit("Plantilla detectada: " . PACMEC_PATH."content/themes/{$GLOBALS['PACMEC']['options']['theme']}/layouts/{$GLOBALS['PACMEC']['route']->layout}");
+} else {
+	$GLOBALS['PACMEC']['theme'] = pacmec_load_theme(PACMEC_PATH."content/themes/{$GLOBALS['PACMEC']['options']['theme']}");
+}
+
+
 if(!isset($GLOBALS['PACMEC']['theme']['path'])){
 	echo "Hubo un error cargando el tema principal, consulte la documentacion o contacte con soporte.";
 	exit();
 }
-
-pacmec_init_route();
-pacmec_init_plugins_actives();
-
-// echo "\t--- Validando tema ---\n";
-if(is_file($GLOBALS['PACMEC']['theme']['path']) && file_exists($GLOBALS['PACMEC']['theme']['path'])){ require_once $GLOBALS['PACMEC']['theme']['path']; } 
-//echo "\t--- Tema  validado ---\n";
 
 
 add_style_head($GLOBALS['PACMEC']['options']['siteurl']."/includes/system/assets/css/pacmec.css", true);
@@ -89,3 +92,6 @@ add_action('page_body', function(){
 	}
 });
 
+
+if(is_file($GLOBALS['PACMEC']['theme']['path']) && file_exists($GLOBALS['PACMEC']['theme']['path'])){ require_once $GLOBALS['PACMEC']['theme']['path']; } 
+//echo "\t--- Tema  validado ---\n";
